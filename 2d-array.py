@@ -33,7 +33,11 @@ import array
 def explode(cBin):
     return [char for char in cBin]
 
-arr=[0x4,0x86,0x27,0x0,0x0,0x0,0x0,0x0] # Sample from CAN bus data stream
+def spd(cE):
+    if cE=="1": return "ON"
+    if cE=="0": return "OFF"
+
+arr=[0x4,0x86,0x27,0x0,0x0,0x0,0x0,0x0] #Sample from CAN bus data stream
 con=[]
 end=""
 
@@ -44,12 +48,5 @@ for i in arr:
 for j in con[2]:
     end=end+j
 
-def spd(cE):
-    if cE == "1":
-        return "ON"
-
-    if cE == "0":
-        return "OFF"
-
-print(spd(con[0][5]))
-print(str(int(end,2))+"km/h")
+print("State: "+spd(con[0][5]))
+print("Speed: "+str(int(end,2))+"km/h")
